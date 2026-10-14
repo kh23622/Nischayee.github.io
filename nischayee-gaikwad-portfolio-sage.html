@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nischayee Gaikwad — Data Scientist | Built with Sage in mind</title>
+<style>
+  :root{
+    --sage-green:#00D639;
+    --sage-green-deep:#00A82C;
+    --ink:#000000;
+    --paper:#FFFFFF;
+    --wash:#F4F7F4;
+    --line:#E2E8E2;
+    --muted:#5A6B5E;
+    --radius:18px;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Helvetica Neue",Helvetica,Arial,"Segoe UI",sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.6;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  a{color:inherit}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .mark{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.02em}
+  .mark .dot{width:14px;height:14px;border-radius:4px;background:var(--sage-green)}
+  .mark span small{display:block;font-weight:500;font-size:11px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+  .nav-links{display:flex;gap:26px;font-size:14px;font-weight:500}
+  .nav-links a{text-decoration:none;color:var(--muted)}
+  .nav-links a:hover{color:var(--ink)}
+  @media(max-width:760px){.nav-links{display:none}}
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    position:relative;overflow:hidden;
+    background:var(--ink);color:#fff;
+    padding:88px 0 96px;
+  }
+  .glow{
+    position:absolute;width:620px;height:620px;border-radius:50%;
+    background:radial-gradient(circle,rgba(0,214,57,.42) 0%,rgba(0,214,57,0) 68%);
+    top:-260px;right:-160px;pointer-events:none;
+  }
+  .glow.two{top:auto;bottom:-360px;left:-220px;right:auto;width:520px;height:520px;
+    background:radial-gradient(circle,rgba(0,214,57,.22) 0%,rgba(0,214,57,0) 70%)}
+  .hero-in{position:relative;z-index:2}
+  .badge{
+    display:inline-flex;align-items:center;gap:9px;
+    border:1px solid rgba(0,214,57,.5);color:var(--sage-green);
+    padding:7px 14px;border-radius:100px;font-size:12.5px;font-weight:600;
+    letter-spacing:.08em;text-transform:uppercase;margin-bottom:26px;
+  }
+  .badge i{width:7px;height:7px;border-radius:50%;background:var(--sage-green);display:block}
+  h1{
+    font-size:clamp(2.3rem,6vw,4.15rem);line-height:1.03;
+    letter-spacing:-.035em;font-weight:700;max-width:16ch;
+  }
+  h1 em{font-style:normal;color:var(--sage-green)}
+  .hero-sub{
+    margin-top:22px;font-size:clamp(1rem,1.6vw,1.2rem);
+    color:rgba(255,255,255,.74);max-width:62ch;
+  }
+  .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+  .btn{
+    display:inline-block;padding:14px 26px;border-radius:100px;
+    font-size:14.5px;font-weight:600;text-decoration:none;transition:.2s;
+  }
+  .btn-primary{background:var(--sage-green);color:#000}
+  .btn-primary:hover{background:#fff}
+  .btn-ghost{border:1px solid rgba(255,255,255,.3);color:#fff}
+  .btn-ghost:hover{border-color:var(--sage-green);color:var(--sage-green)}
+  .hero-stats{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+    margin-top:64px;border-top:1px solid rgba(255,255,255,.15);
+    padding-top:30px;
+  }
+  .hero-stats div{padding-right:18px}
+  .hero-stats b{display:block;font-size:1.7rem;color:var(--sage-green);letter-spacing:-.02em}
+  .hero-stats span{font-size:13px;color:rgba(255,255,255,.6)}
+  @media(max-width:620px){.hero-stats{grid-template-columns:1fr;gap:22px}}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:82px 0}
+  .sec-label{
+    font-size:12.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--sage-green-deep);margin-bottom:12px;
+  }
+  h2{font-size:clamp(1.65rem,3.4vw,2.4rem);letter-spacing:-.03em;line-height:1.15;font-weight:700}
+  .lede{margin-top:16px;color:var(--muted);max-width:70ch;font-size:1.03rem}
+  .about-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;margin-top:38px;align-items:start}
+  @media(max-width:880px){.about-grid{grid-template-columns:1fr;gap:34px}}
+  .about-grid p{color:#243026;margin-bottom:16px}
+  .fit-card{
+    background:var(--wash);border:1px solid var(--line);border-radius:var(--radius);
+    padding:30px;border-left:4px solid var(--sage-green);
+  }
+  .fit-card h3{font-size:1.05rem;letter-spacing:-.01em;margin-bottom:14px}
+  .fit-card ul{list-style:none;font-size:14.5px;color:#3B4A3F}
+  .fit-card li{padding-left:24px;position:relative;margin-bottom:11px}
+  .fit-card li::before{
+    content:"";position:absolute;left:0;top:7px;width:9px;height:9px;
+    border-radius:2px;background:var(--sage-green);
+  }
+
+  /* ---------- WORK ---------- */
+  .work{background:var(--wash);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .cards{display:grid;gap:20px;margin-top:40px}
+  .card{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:32px;transition:.22s;
+  }
+  .card:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,.07);border-color:var(--sage-green)}
+  .card-top{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:baseline}
+  .card h3{font-size:1.22rem;letter-spacing:-.02em}
+  .tag{
+    font-size:11.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+    background:rgba(0,214,57,.14);color:#00701D;padding:5px 11px;border-radius:100px;
+  }
+  .meta{font-size:13.5px;color:var(--muted);margin-top:5px}
+  .card ul{margin-top:18px;list-style:none}
+  .card li{
+    position:relative;padding-left:22px;margin-bottom:10px;
+    font-size:14.8px;color:#2C382F;
+  }
+  .card li::before{
+    content:"";position:absolute;left:0;top:8px;width:10px;height:2px;background:var(--sage-green);
+  }
+  .stack{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+  .stack span{
+    font-size:12.5px;font-weight:500;border:1px solid var(--line);
+    padding:5px 12px;border-radius:100px;color:var(--muted);background:#fff;
+  }
+  .highlight{border-left:4px solid var(--sage-green)}
+
+  /* ---------- SKILLS ---------- */
+  .skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-top:40px}
+  .skill{
+    border:1px solid var(--line);border-radius:14px;padding:24px;background:#fff;
+  }
+  .skill h4{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--sage-green-deep);margin-bottom:12px}
+  .skill p{font-size:14.5px;color:#2C382F}
+
+  /* ---------- CONTACT ---------- */
+  .contact{background:var(--ink);color:#fff;position:relative;overflow:hidden}
+  .contact .glow{top:-200px;left:-140px;right:auto}
+  .contact-in{position:relative;z-index:2}
+  .contact h2{color:#fff}
+  .contact p.lede{color:rgba(255,255,255,.7)}
+  .contact-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:40px}
+  .cl{
+    display:block;text-decoration:none;border:1px solid rgba(255,255,255,.2);
+    border-radius:14px;padding:22px;transition:.2s;
+  }
+  .cl:hover{border-color:var(--sage-green);background:rgba(0,214,57,.07)}
+  .cl small{display:block;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--sage-green);margin-bottom:7px}
+  .cl b{font-weight:600;font-size:15px;word-break:break-word}
+  footer{background:var(--ink);color:rgba(255,255,255,.45);font-size:13px;
+    padding:28px 0 44px;border-top:1px solid rgba(255,255,255,.1);position:relative;z-index:2}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <div class="mark">
+      <div class="dot"></div>
+      <span>Nischayee Gaikwad<small>Data Scientist · Analytics &amp; AI</small></span>
+    </div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="glow"></div>
+  <div class="glow two"></div>
+  <div class="wrap hero-in">
+    <div class="badge"><i></i> Built with Sage in mind</div>
+    <h1>Data science that turns <em>messy business data</em> into decisions people trust.</h1>
+    <p class="hero-sub">
+      I'm Nischayee Gaikwad — an MSc Scientific Computing with Data Science graduate working across
+      Python, SQL, machine learning and generative AI. I build reproducible, evaluated analytics:
+      from RAG and document intelligence through to classification models, data-quality checks and
+      pipelines that hold up in production.
+    </p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#work">See the work</a>
+      <a class="btn btn-ghost" href="#contact">Get in touch</a>
+    </div>
+    <div class="hero-stats">
+      <div><b>95%+</b><span>Precision reported on a fraud-detection classification project</span></div>
+      <div><b>98%</b><span>Accuracy reported on a Random Forest wildfire-risk model</span></div>
+      <div><b>11×</b><span>Pipeline runtime reduced, 3.3s → 0.3s on ATLAS data processing</span></div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-label">About</div>
+    <h2>Analytics with the definitions, limits and evidence written down.</h2>
+    <div class="about-grid">
+      <div>
+        <p>
+          I'm an MSc Scientific Computing with Data Science graduate based in England, United Kingdom,
+          with hands-on experience in Python, SQL, machine learning and generative AI. My work centres on
+          predictive modelling, RAG workflows, data pipelines and data quality — with a focus on reliable,
+          reproducible AI solutions rather than one-off notebooks.
+        </p>
+        <p>
+          My scientific computing background trained me to treat data carefully: validate inputs, document
+          assumptions, state limitations, and make results reproducible. I care about the unglamorous parts
+          — lineage, quality checks, evaluation — because that is what makes a model something a business
+          can actually rely on.
+        </p>
+        <p>
+          That instinct is why Sage caught my attention. A business built on accounting, payroll and finance
+          runs on numbers people have to be able to trust, and Sage's agent work — reading incoming bills,
+          flagging unusual journal entries, tracking month-end close — is only as good as the data quality
+          and evaluation behind it.
+        </p>
+      </div>
+      <div class="fit-card">
+        <h3>Why this maps to a Data Scientist role at Sage</h3>
+        <ul>
+          <li><b>Structured + unstructured data:</b> OCR and document-extraction pipelines alongside SQL and BigQuery work.</li>
+          <li><b>Generative AI in practice:</b> RAG, LLM-based search and prompt engineering applied to real document workflows.</li>
+          <li><b>Classic ML foundations:</b> classification, regression, clustering and feature engineering with scikit-learn.</li>
+          <li><b>AWS-oriented:</b> AWS re/Start, AWS Data Analytics and AWS Technical Essentials certified.</li>
+          <li><b>Evaluation mindset:</b> data validation, quality checks and model evaluation built into every project.</li>
+          <li><b>Reproducibility:</b> Docker and Git used to make data-processing workflows maintainable.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="work" id="work">
+  <div class="wrap">
+    <div class="sec-label">Selected work</div>
+    <h2>Experience &amp; projects most relevant to Sage</h2>
+    <p class="lede">
+      Four pieces of work, chosen because they speak directly to financial data, document intelligence,
+      modelling and large-scale data processing.
+    </p>
+
+    <div class="cards">
+
+      <div class="card highlight">
+        <div class="card-top">
+          <div>
+            <h3>AI Document Intelligence Extern</h3>
+            <div class="meta">Pfizer Advanced (Externship) · Jul 2026 – Present</div>
+          </div>
+          <div class="tag">GenAI · RAG</div>
+        </div>
+        <ul>
+          <li>Building AI-powered document intelligence solutions using Python, OCR and Retrieval-Augmented Generation (RAG).</li>
+          <li>Developing document extraction pipelines and exploring LLM-based search using modern AI frameworks.</li>
+          <li>Applying prompt engineering, NLP and cloud technologies to automate document processing workflows.</li>
+        </ul>
+        <div class="stack"><span>Python</span><span>OCR</span><span>RAG</span><span>LLM search</span><span>Prompt engineering</span><span>NLP</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div>
+            <h3>Fraud Detection &amp; Customer Segmentation</h3>
+            <div class="meta">Python · SQL · BigQuery ML</div>
+          </div>
+          <div class="tag">Classification · Clustering</div>
+        </div>
+        <ul>
+          <li>Prepared and analysed transactional datasets to identify patterns associated with potential fraud and customer segments.</li>
+          <li>Developed classification and clustering models, achieving over 95% precision as reported for the project.</li>
+          <li>Applied feature engineering and model evaluation to assess predictive performance and generate analytical insights.</li>
+        </ul>
+        <div class="stack"><span>Python</span><span>SQL</span><span>BigQuery ML</span><span>Feature engineering</span><span>Model evaluation</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div>
+            <h3>Scalable Quantitative Data Pipeline — ATLAS Experiment</h3>
+            <div class="meta">Python · Docker · Distributed Computing</div>
+          </div>
+          <div class="tag">Data engineering</div>
+        </div>
+        <ul>
+          <li>Developed Python ETL pipelines to ingest, transform and validate large-scale scientific datasets.</li>
+          <li>Automated data-quality checks and optimised computational workflows, reducing runtime from 3.3 sec to 0.3 sec.</li>
+          <li>Used Docker and Git to support reproducible and maintainable data-processing workflows.</li>
+        </ul>
+        <div class="stack"><span>Python</span><span>ETL</span><span>Docker</span><span>Git</span><span>Data quality checks</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div>
+            <h3>Trainee Analyst</h3>
+            <div class="meta">BI SQL Consulting Ltd. · Jan 2024 – May 2024</div>
+          </div>
+          <div class="tag">BI &amp; reporting</div>
+        </div>
+        <ul>
+          <li>Analysed operational datasets using Python and Excel to identify trends and support data-driven decision-making.</li>
+          <li>Performed exploratory analysis, data validation and quality checks, improving the accuracy and reliability of reporting.</li>
+          <li>Developed KPI reports and dashboards to communicate performance insights and support operational monitoring.</li>
+        </ul>
+        <div class="stack"><span>Python</span><span>Excel</span><span>EDA</span><span>KPI reporting</span><span>Dashboards</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div>
+            <h3>Climate Risk Prediction &amp; Analytics Dashboard</h3>
+            <div class="meta">Python · Random Forest · Regression · Streamlit · Plotly · NASA Earth Data</div>
+          </div>
+          <div class="tag">Predictive modelling</div>
+        </div>
+        <ul>
+          <li>Integrated and transformed environmental data to support predictive modelling and risk analysis.</li>
+          <li>Developed a Random Forest model to predict wildfire occurrence, achieving 98% predictive accuracy as reported for the project.</li>
+          <li>Built an interactive dashboard to present environmental trends and model predictions in an accessible format.</li>
+        </ul>
+        <div class="stack"><span>Random Forest</span><span>Regression</span><span>Streamlit</span><span>Plotly</span><span>NASA Earth Data</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-label">Capabilities</div>
+    <h2>Technical toolkit</h2>
+    <div class="skill-grid">
+      <div class="skill"><h4>Programming &amp; Data</h4><p>Python, SQL, Pandas, NumPy, Exploratory Data Analysis, Statistical Analysis</p></div>
+      <div class="skill"><h4>Machine Learning</h4><p>Scikit-learn, Random Forest, Classification, Regression, Clustering, Feature Engineering</p></div>
+      <div class="skill"><h4>AI &amp; Document Intelligence</h4><p>OCR, NLP, Retrieval-Augmented Generation, LLM-Based Search, Prompt Engineering</p></div>
+      <div class="skill"><h4>Data Engineering &amp; Quality</h4><p>ETL, Data Ingestion, Data Cleansing, Data Validation, Data Quality Checks</p></div>
+      <div class="skill"><h4>Tools &amp; Platforms</h4><p>Git, Docker, Linux, BigQuery, AWS, GCP</p></div>
+      <div class="skill"><h4>Visualisation</h4><p>Streamlit, Plotly, Tableau, Power BI, Analytical Reporting</p></div>
+      <div class="skill"><h4>Certifications</h4><p>AWS re/Start (Coding Black Females Boot Camp) · AWS Data Analytics &amp; AWS Technical Essentials (AWS Skills Builder) · MLOps for Generative AI (Google Cloud) · Google Data Analytics</p></div>
+      <div class="skill"><h4>Education</h4><p>University of Bristol — MSc Scientific Computing with Data Science<br>Ramnarain Ruia Autonomous College — BSc Bioanalytical Sciences</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="glow"></div>
+  <div class="wrap contact-in">
+    <div class="sec-label" style="color:var(--sage-green)">Contact</div>
+    <h2>Let's talk about data, models and getting them into production.</h2>
+    <p class="lede">
+      Based in England, United Kingdom and open to Data Scientist opportunities in analytics and AI.
+    </p>
+    <div class="contact-links">
+      <a class="cl" href="mailto:nischayeegaikwad11@gmail.com"><small>Email</small><b>nischayeegaikwad11@gmail.com</b></a>
+      <a class="cl" href="tel:+447741878024"><small>Phone</small><b>+44 7741 878024</b></a>
+      <div class="cl"><small>LinkedIn</small><b>Nischayee Gaikwad</b></div>
+      <div class="cl"><small>Location</small><b>England, United Kingdom</b></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Nischayee Gaikwad — Data Scientist</span>
+    <span>Independent portfolio prepared for Sage. Not affiliated with or endorsed by Sage.</span>
+  </div>
+</footer>
+
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79","spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>
